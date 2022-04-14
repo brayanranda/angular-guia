@@ -1,0 +1,186 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+
+      <a href="">
+        <img routerLink="/inicio" src="../../../assets/img/LOGO-01.png" alt="logo" />
+        <h1>NorteXploradores</h1>
+      </a>
+
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item>
+        <i nz-icon nzType="container" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Inf Corporativa</span>
+        <a routerLink="infoCorporativa"></a>
+      </li>
+
+      <li nz-menu-item>
+        <i nz-icon nzType="user" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Empleados</span>
+        <a routerLink="empleados"></a>
+      </li>
+
+      <li nz-menu-item>
+        <i nz-icon nzType="solution" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Cargos</span>
+        <a routerLink="cargos"></a>
+      </li>
+
+      <li nz-menu-item>
+        <i nz-icon nzType="environment" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Tours</span>
+        <a routerLink="tours"></a>
+      </li>
+
+      <li nz-menu-item>
+        <i nz-icon nzType="idcard" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Aliados</span>
+        <a routerLink="aliados"></a>
+      </li>
+
+      <li nz-menu-item>
+        <i nz-icon nzType="team" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Clientes</span>
+        <a routerLink="clientes"></a>
+      </li>
+  
+      <li nz-menu-item>
+        <i nz-icon nzType="alert" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Alojamientos</span>
+        <a routerLink="alojamientos"></a>
+      </li>
+
+      <li nz-menu-item>
+        <i nz-icon nzType="code-sandbox" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Paquetes</span>
+        <a routerLink="paquetes"></a>
+      </li>
+
+      <li nz-menu-item>
+        <i nz-icon nzType="dribbble" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Actividades</span>
+        <a routerLink="actividades"></a>
+      </li>
+
+      <li nz-menu-item>
+        <i nz-icon nzType="credit-card" nzTheme="outline" style="font-size: 20px"></i>
+        <span>Descuentos</span>
+        <a routerLink="descuentos"></a>
+      </li>
+ 
+      <li nz-menu-item>
+        <i  nz-icon nzType="dollar"nzTheme="outline" style="font-size: 20px"></i>
+        <span>Devoluciones</span>
+        <a routerLink="devoluciones"></a>
+      </li>
+
+      <li nz-menu-item>
+        <div *ngIf="totalSolicitudes>0" class="number"><span id="numeroTotal"
+            class="numbero">{{totalSolicitudes}}</span></div>
+        <i nz-icon nzType="comment" nzTheme="outline" style="font-size: 20px"></i>
+
+        <span>Solicitudes</span>
+        <a routerLink="solicitudes"></a>
+      </li>
+
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <div class="miremos" style="display: flex; justify-content: space-between;">
+
+          <div class="col-1">
+            <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+              <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+            </span>
+          </div>
+
+          <div class="item">
+            <a routerLink="dashboard">
+              <i class="fas fa-tachometer-alt"></i>
+              DASHBOARD
+            </a>
+          </div>
+
+          <div class="item">
+            <a routerLink="calendario">
+              <i class="fas fa-calendar-alt"></i>
+              CALENDARIO
+            </a>
+          </div>
+
+          <!-- <div class="item">
+              <a routerLink="descuentos">
+                <i class="fas fa-tags"></i>
+                DESCUENTOS
+              </a>
+            </div> -->
+
+          <!-- <div class="item">
+              <a routerLink="reportes">
+                <i class="fas fa-file-chart-line"></i>
+                REPORTES
+              </a>
+            </div> -->
+          
+          <div class="item" nzPlacement="bottomRight">
+            <div class="icon" style="margin-bottom: 50px!important" (click)="drop()" id="bell">
+              <img src="https://i.imgur.com/AC7dgLA.png" alt="" id="notificacion">
+            </div>
+            <div class="notifications" id="box">
+              <h2 style="text-align: center">Notificationes</h2>
+              <div class="notifications-item"*ngIf="notificaciones.length==0">
+                <div class="text" >
+                  <h4 style="text-align: center;"> No tienes notificaciones recientes.</h4>
+
+                </div>
+              </div>
+              
+              <div #element class="notifications-item" (click)="desactivarSoli(notificacion.idNotificacion,element)" *ngFor="let notificacion of notificaciones">
+                
+                  <img *ngIf="notificacion.usuario!=null" [src]="notificacion.usuario.imgUrl" alt="img">
+                  <img *ngIf="notificacion.usuario==null" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Antu_dialog-warning.svg/1024px-Antu_dialog-warning.svg.png" alt="img">
+                  
+                  <div class="text">
+                    <h4 *ngIf="notificacion.solicitudTour!=null">Solicitud de viaje</h4>
+                    <h4 *ngIf="notificacion.sugerencia!=null">Sugerencia</h4>
+                    <h4 *ngIf="notificacion.sugerencia==null && notificacion.solicitudTour==null"></h4>
+                    <p>{{notificacion.descripcion}}</p>
+                  </div>
+                
+              </div>
+                  <a  style="text-align: center;"  routerLink="/administracion/notificaciones" (click)="drop()" class="text-center">Ver más</a>
+
+            </div>
+
+          </div>
+
+          <div class="item">
+
+            <nz-button-group>
+              <button nz-button (click)="log()">{{nombreUser}}</button>
+              <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight">
+                <i nz-icon nzType="user"></i>
+              </button>
+            </nz-button-group>
+
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item  routerLink="/administracion/editarinfo">Editar Perfil</li>
+                <li nz-menu-item (click)="onLogOut()" routerLink="/inicio"> <a href=""></a> Cerrar Sesión</li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+        </div>
+
+      </div>
+    </nz-header>
+    <div class="contenido" style="width: 100%; height: 100%; overflow: scroll">
+      <router-outlet></router-outlet>
+    </div>
+
+  </nz-layout>
+</nz-layout>

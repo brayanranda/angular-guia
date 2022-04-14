@@ -1,0 +1,96 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+            <h3>Bienvenido</h3>
+            <p>Para norteXploradores es muy importante saber tu opinión y así complacer a todos nuestros clientes.
+                En este apartado podras realizar una petición, queja, reclamo o sugerencia (PQRS).</p>
+
+        </div>
+
+        <div class="col-md-9 register-right" style="display: flex; justify-content: center;">
+            <form [formGroup]="form" (ngSubmit)="enviarData()">              
+                                   
+                        <h3 class="register-heading">Recomendaciones</h3>
+                        <div class="row register-form" style="display: flex; justify-content: center;">
+                            
+                                <h5>Asunto</h5>
+                                <div class="form-group">
+                                    <textarea style="resize: none" formControlName="descripcion" [class.is-invalid]="form.controls.descripcion.status=='INVALID'" [class.is-valid]="form.controls.descripcion.status=='VALID'" class="form-control"
+                                        id="inputDescripcion" rows="6" placeholder="Escribe tu PQRS (máx.255 caracteres)" value=""
+                                        required></textarea>
+                                </div>
+                                <div class="form-group needs-validation" novalidate>
+                                    <input hidden formControlName="usuario" type="text" class="form-control"
+                                        placeholder="id" value="{{ idUsuario }}" required />
+                                </div>
+                                <input type="submit"  class="btn-success btnRegister" value="Enviar">
+                                                        
+                        </div>
+                              
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
+<br>
+
+
+
+
+
+
+
+<!-- <div class="contenedor">
+    <h1>Recomendaciones</h1>
+    <div class="descripcion">
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aliquid sequi ipsam saepe quo ea, ratione
+            natus rerum? Esse saepe architecto nobis corporis neque magni nisi dolorum blanditiis illum consectetur?</p>
+    </div>
+
+    <div class="forms">
+        <div class="form1">
+            <div>
+                <h6>Asunto</h6>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+                <textarea class="form-control" id="recomendacion" rows="5"></textarea>
+            </div>
+        </div>
+
+        <div class="form2">
+            <form>
+                <div>
+                    <h4>Formulario</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Digite su nombre" minlength="5" maxlength="10" required="true">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" placeholder="Digite su número celular">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                        placeholder="name@example.com">
+                </div>
+                <div class="boton">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->

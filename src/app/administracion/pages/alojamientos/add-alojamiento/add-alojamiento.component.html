@@ -1,0 +1,100 @@
+
+
+<body>
+    <div class="container-contact100">
+      <div class="wrap-contact100">
+  
+        <form [formGroup]="form" (submit)="enviarData()" class="contact100-form validate-form">
+          <span class="contact100-form-title">
+            <h4 class="col-sm-10">{{titulo | uppercase}}</h4>
+          </span>
+          <hr style="color: rgb(5, 168, 5);">
+          <input formControlName="idAlojamiento" hidden type="text" class="form-control" id="inputidAloj">
+
+          <div class="wrap-input100" [formGroup]="form">
+            <span class="contact100-form-combo">Municipio</span>
+            <select formControlName="municipio" class="input100 form-control" type="text" id="inputMunicipio"
+            [class.is-invalid]="form.controls.municipio.status!='VALID'"
+                [class.is-valid]="form.controls.municipio.status=='VALID'">
+                <option value="">Seleccione Un Municipio</option>
+                <option *ngFor="let municipio of municipios" name="municipio" id="muni{{municipio.idMuni}}" 
+                    value={{municipio.idMuni}}>
+                    {{municipio.nombre}}</option>
+            </select>
+            <span class="focus-input100"></span>
+            <div class="invalid-feedback" style="text-align: center;">
+                Elige Un Municipio
+            </div>
+        </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Por favor ingrese el nombre completo">
+            <span class="contact100-form-combo">Nombre del alojamiento</span>
+            <input formControlName="nombre" class="input100 form-control" type="text" placeholder="Nombre del alojamiento" id="inputNombre"
+            [class.is-invalid]="form.controls.nombre.status!='VALID'"
+            [class.is-valid]="form.controls.nombre.status=='VALID'">
+            <span class="focus-input100"></span>
+            <div class="invalid-feedback" style="text-align: center;">
+              Maximo 50 Caracteres
+            </div>
+          </div>
+
+          <div class="wrap-input100 validate-input">
+            <span class="contact100-form-combo">Estado del alojamiento</span>
+            <select formControlName="estado" type="text" class="input100 form-control" id="inputEstado"
+                placeholder="Estado" 
+                [class.is-invalid]="form.controls.estado.status!='VALID'"
+                [class.is-valid]="form.controls.estado.status=='VALID'">
+                <option value="">Seleccione una opción</option>
+                <option value="false">INACTVO</option>
+                <option value="true">ACTIVO</option>
+            </select>
+            <div class="invalid-feedback" style="text-align: center;">Elige Un Estado</div>
+
+            
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Por favor ingrese su descripcion">
+            <span class="contact100-form-combo">Descripción</span>
+            <textarea formControlName="descripcion" class="input100 form-control" placeholder="Descripcion del alojamiento"
+              id="inputDescripcion"
+              [class.is-invalid]="form.controls.descripcion.status!='VALID'"
+            [class.is-valid]="form.controls.descripcion.status=='VALID'"></textarea>
+            <span class="focus-input100"></span>
+            <div class="invalid-feedback" style="text-align: center;">
+              Minimo 20 Caracteres
+            </div>
+          </div>
+
+
+          <div class="wrap-input100 validate-input" data-validate="Por favor ingrese la direccion completo">
+            <span class="contact100-form-combo">Dirección</span>
+            <input formControlName="dir" class="input100 form-control" type="text" placeholder="Direccion" id="inputDir"
+            [class.is-invalid]="form.controls.dir.status!='VALID'"
+            [class.is-valid]="form.controls.dir.status=='VALID'">
+            <span class="focus-input100"></span>
+            <div class="invalid-feedback" style="text-align: center;">
+              Minimo 5 Caracteres - Maximo 100 Caracteres
+            </div>
+          </div>
+
+  
+          <div class="wrap-input100 validate-input" data-validate="Por favor ingrese el precio">
+            <span class="contact100-form-combo">Precio</span>
+            <input formControlName="precio" class="input100 form-control" type="number" placeholder="Precio" id="inputPrecio"
+            [class.is-invalid]="form.controls.precio.status!='VALID'"
+            [class.is-valid]="form.controls.precio.status=='VALID'">
+            <span class="focus-input100"></span>
+            <div class="invalid-feedback" style="text-align: center;">
+              Precio Minimo $1000 - Precio Maximo 1.000.000 Caracteres
+            </div>
+          </div>
+  
+
+          <hr style="color: rgb(5, 168, 5);">
+          <div class="container-contact100-form-btn">
+            <button class="contact100-form-btn" type="submit">{{boton | uppercase}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>

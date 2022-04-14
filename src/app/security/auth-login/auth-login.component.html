@@ -1,0 +1,39 @@
+<div class="text-center" *ngIf="isLogged; else loggedOut">
+    <h2>Ya has iniciado sesión</h2>
+</div>
+
+<ng-template #loggedOut>
+    <div class="container-fluid login" style="height: 100%; margin: 0px; display: flex; justify-content: center; align-items: center;">
+        <div id="login" class="signin-card ">
+            <div class="logo-image" style="margin-bottom:15px;">
+                <img src="../../../assets/img/LOGO-01.png" alt="Logo" title="Logo" width="138">
+            </div>
+            <form [formGroup]="loginInfo" novalidate role="form">
+                <div id="form-login-username" class="form-group">
+
+                    <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" [class.is-valid]="loginInfo.controls.email.status=='VALID'" [class.is-invalid]="loginInfo.controls.email.status!='VALID'" formControlName="email" required
+                        type="text" size="18" alt="login" required />
+                    <span class="form-highlight"></span>
+                    <span class="form-bar"></span>
+                    <label for="username" class="float-label">Email</label>
+                </div>
+                <div id="form-login-password" class="form-group">
+                    <input type="password" name="password" id="password" class="form-control" [class.is-valid]="loginInfo.controls.password.status=='VALID'" [class.is-invalid]="loginInfo.controls.password.status!='VALID'" formControlName="password" required>
+                    <span class="form-highlight"></span>
+                    <span class="form-bar"></span>
+                    <label for="password" class="float-label">Contraseña</label>
+                </div>
+                <!-- <div id="form-login-remember" class="form-group">
+                <div class="checkbox checkbox-default">
+                    <input id="remember" type="checkbox" value="yes" alt="Remember me" class="">
+                    <label for="remember">Remember me</label>
+                </div>
+            </div> -->
+                <div>
+                    <button class="btn btn-block btn-info ripple-effect" type="submit" name="Submit" (click)="guardarData()" alt="sign in">Ingresar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>

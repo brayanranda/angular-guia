@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="cajon">
+    <div class="titulo">
+      <h4 class="gestiones">
+        Administración de Descuentos
+      </h4>
+    </div>
+
+
+    <div class="table">
+      <table
+    datatable
+    [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger"
+    class="table table-striped table-bordered row-border hover"
+  >
+    <thead class="table-dark">
+      <tr> 
+        <th>ID</th>
+        <th>DESCRIPCIÓN</th>
+        <th>PORCENTAJE</th>       
+        <th>OPCIÓN</th>     
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let desc of data">
+          <td>{{ desc.idDescuento}}</td>
+          <td>{{ desc.descripcion }}</td>
+          <td>{{ desc.porcentaje }}</td>
+          <td nzAlign="center">
+           
+          <a [routerLink]="['/administracion/editDescuentos',desc.idDescuento]">
+            <i
+              nz-icon
+              nzType="edit"
+              nzTheme="outline"
+              style="font-size: 20px"
+            ></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="container-contact100">
+  <div class="wrap-contact100">
+
+    <form [formGroup]="form" (submit)="enviarData()" class="contact100-form validate-form">
+      <span class="contact100-form-title">
+        <h4 class="col-sm-10">{{titulo | uppercase}}</h4>
+      </span>
+      <hr style="color: rgb(5, 168, 5);">
+      <input formControlName="idCargo" hidden type="text" class="form-control" id="inputCargo">
+
+      <div class="wrap-input100 validate-input" data-validate="Por favor ingrese el nombre completo">
+        <span class="contact100-form-combo">Nombre del cargo</span>
+        <input formControlName="nombre" class="input100 form-control" type="text" placeholder="Nombre del Cargo" id="inputNombre"
+            [class.is-invalid]="form.controls.nombre.status!='VALID'"
+            [class.is-valid]="form.controls.nombre.status=='VALID'">
+        <span class="focus-input100"></span>
+        <div class="invalid-feedback" style="text-align: center;">
+          Ingresa nombre entre 5 y 25 caracteres
+      </div>
+      </div>
+
+      <div class="wrap-input100" [formGroup]="form">
+        <span class="contact100-form-combo">Estado del cargo</span>
+        <select formControlName="estado" aria-label="Default select example"
+          [class.is-invalid]="form.controls.estado.status=='INVALID'"
+          [class.is-valid]="form.controls.estado.status=='VALID'" class="form-control input100"
+          placeholder="estado">
+          <option value="false">INACTVO</option>
+          <option value="true">ACTIVO</option>
+        </select>
+        <div class="invalid-feedback" style="text-align: center;">
+          Selecciona un estado
+      </div>
+
+      </div>
+      <div class="wrap-input100 validate-input" data-validate="Por favor ingrese su descripcion">
+        <span class="contact100-form-combo">Descripcion</span>
+        <textarea formControlName="descripcion" class="input100 form-control" placeholder="Descripcion del Cargo"id="inputDescripcion"
+          [class.is-invalid]="form.controls.descripcion.status!='VALID'"
+            [class.is-valid]="form.controls.descripcion.status=='VALID'"></textarea>
+        <span class="focus-input100"></span>
+        <div class="invalid-feedback" style="text-align: center;">
+          Ingresa una descripcion de maximo 202 caracteres
+      </div>
+      </div>
+
+      <div class="wrap-input100 validate-input" data-validate="Por favor ingrese el nombre completo">
+        <span class="contact100-form-combo">Sueldo</span>
+        <input formControlName="sueldo" class="input100 form-control" type="number" placeholder="Sueldo" id="inputSueldo"
+        [class.is-invalid]="form.controls.sueldo.status!='VALID'"
+            [class.is-valid]="form.controls.sueldo.status=='VALID'">
+        <span class="focus-input100"></span>
+        <div class="invalid-feedback" style="text-align: center;">
+          Ingresa un sueldo min de 10Mil y maximo de 9.9Millones 
+      </div>
+      </div>
+      <hr style="color: rgb(5, 168, 5);">
+      <div class="container-contact100-form-btn">
+        <button class="contact100-form-btn" type="submit">{{boton | uppercase}}</button>
+      </div>
+    </form>
+  </div>
+</div>
